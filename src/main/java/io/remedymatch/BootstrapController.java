@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.Instant;
 import java.util.logging.Logger;
 
-@RequestMapping(value = "/bootstrap")
-@RequiredArgsConstructor
+// @RequestMapping(value = "/bootstrap")
+// @RequiredArgsConstructor
 public class BootstrapController {
     Logger logger = Logger.getLogger(BootstrapController.class.getName());
     private ArtikelJpaRepository artikelJpaRepository;

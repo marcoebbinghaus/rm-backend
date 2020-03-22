@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
+@Profile("!test")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -31,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest().authenticated();
         // Allow showing pages within a frame
         http.headers().frameOptions().sameOrigin();
+        http.csrf().disable();
     }
 
     private JwtAuthenticationConverter jwtAuthenticationConverter() {

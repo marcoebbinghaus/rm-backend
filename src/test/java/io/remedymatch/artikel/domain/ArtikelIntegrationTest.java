@@ -3,6 +3,7 @@ package io.remedymatch.artikel.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.remedymatch.RmBeApplication;
+import io.remedymatch.artikel.TestApplication;
 import io.remedymatch.artikel.api.ArtikelDTO;
 import io.remedymatch.artikel.api.ArtikelKategorieDTO;
 import org.hamcrest.CoreMatchers;
@@ -12,8 +13,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -26,9 +31,12 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = RmBeApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = TestApplication.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@DirtiesContext
 @AutoConfigureMockMvc
 @Tag("InMemory")
+@ActiveProfiles("test")
+@EnableAutoConfiguration(exclude = { SecurityAutoConfiguration.class })
 @Disabled
 public class ArtikelIntegrationTest {
 
